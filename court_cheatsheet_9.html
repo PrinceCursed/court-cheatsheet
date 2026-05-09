@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Памятка судьи · Окружной суд · Сан-Андреас</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090e;--s1:#0b0f18;--s2:#0f1520;--s3:#131d2a;
+  --b1:#182030;--b2:#1d2838;--b3:#223040;
+  --acc:#4a7ab5;--acc2:#5a8ec0;--acc3:#7aaad4;
+  --teal:#2a8f82;--amber:#b87d2a;--red:#a05050;--green:#3a7a55;--purple:#6e63a0;
+  --t1:#ccd3de;--t2:#6a7888;--t3:#364758;
+  --mono:'JetBrains Mono',monospace;--sans:'Manrope',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-size:14px;line-height:1.65;min-height:100vh}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(60,110,180,.25)}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
+
+.topbar{background:var(--s1);border-bottom:1px solid var(--b1);padding:.7rem 1.5rem;display:flex;align-items:center;position:sticky;top:0;z-index:100}
+.topbar-emblem{width:32px;height:32px;background:var(--s3);border:1px solid var(--b3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.topbar-name{font-size:14px;font-weight:600;color:var(--t1)}
+.topbar-sub{font-size:10px;color:var(--t3);font-family:var(--mono);margin-top:1px}
+.topbar-sep{width:1px;height:28px;background:var(--b1)}
+.topbar-badge{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:rgba(60,110,180,.12);color:var(--acc2);border:1px solid rgba(60,110,180,.2)}
+
+.tabnav{background:var(--s1);border-bottom:1px solid var(--b1);padding:0 2rem;display:flex;gap:2px;overflow-x:auto}
+.tabnav::-webkit-scrollbar{height:0}
+.tab-link{display:flex;align-items:center;gap:6px;padding:.65rem 1rem;font-size:12px;font-weight:500;color:var(--t3);border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab-link:hover{color:var(--t2);background:rgba(255,255,255,.02)}
+
+/* CSS-ONLY TABS */
+.tc{display:none;padding:2rem;max-width:960px;margin:0 auto}
+
+#t-process:target~.wrap #c-process,
+#t-req:target~.wrap #c-req,
+#t-grounds:target~.wrap #c-grounds,
+#t-supreme:target~.wrap #c-supreme,
+#t-nums:target~.wrap #c-nums,
+#t-deliver:target~.wrap #c-deliver,
+#t-prec:target~.wrap #c-prec,
+#t-assistant:target~.wrap #c-assistant,
+#t-links:target~.wrap #c-links{display:block}
+
+#c-process{display:block}
+#t-req:target~.wrap #c-process,
+#t-grounds:target~.wrap #c-process,
+#t-supreme:target~.wrap #c-process,
+#t-nums:target~.wrap #c-process,
+#t-deliver:target~.wrap #c-process,
+#t-prec:target~.wrap #c-process,
+#t-assistant:target~.wrap #c-process,
+#t-links:target~.wrap #c-process{display:none}
+
+.tl-process{color:var(--acc2);border-bottom-color:var(--acc)}
+#t-req:target~.tabnav .tl-process,
+#t-grounds:target~.tabnav .tl-process,
+#t-supreme:target~.tabnav .tl-process,
+#t-nums:target~.tabnav .tl-process,
+#t-deliver:target~.tabnav .tl-process,
+#t-prec:target~.tabnav .tl-process,
+#t-assistant:target~.tabnav .tl-process,
+#t-links:target~.tabnav .tl-process{color:var(--t3);border-bottom-color:transparent}
+
+#t-req:target~.tabnav .tl-req,
+#t-grounds:target~.tabnav .tl-grounds,
+#t-supreme:target~.tabnav .tl-supreme,
+#t-nums:target~.tabnav .tl-nums,
+#t-deliver:target~.tabnav .tl-deliver,
+#t-prec:target~.tabnav .tl-prec,
+#t-assistant:target~.tabnav .tl-assistant,
+#t-links:target~.tabnav .tl-links{color:var(--acc2);border-bottom-color:var(--acc)}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--b1)}
+.sec-icon{width:40px;height:40px;flex-shrink:0;background:var(--s3);border:1px solid var(--b2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sec-title{font-size:19px;font-weight:700;color:var(--t1);letter-spacing:-.01em}
+.sec-sub{font-size:11px;color:var(--t3);font-family:var(--mono);margin-top:3px}
+
+/* CARD */
+.card{background:var(--s1);border:1px solid var(--b1);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card-head{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card-head::after{content:'';flex:1;height:1px;background:var(--b1)}
+
+/* STEPS */
+.steps{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;padding:.4rem 0;font-size:13.5px}
+.steps li::before{content:counter(s);min-width:24px;height:24px;background:rgba(60,110,180,.1);border:1px solid rgba(60,110,180,.25);border-radius:6px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--acc2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* LIST */
+.lst{list-style:none}
+.lst li{display:flex;gap:10px;align-items:flex-start;padding:.3rem 0;font-size:13.5px;border-bottom:1px solid rgba(30,45,66,.6)}
+.lst li:last-child{border-bottom:none}
+.lst li::before{content:'▸';color:var(--acc);font-size:10px;margin-top:4px;flex-shrink:0}
+
+/* ALERT */
+.alert{display:flex;gap:10px;align-items:flex-start;padding:.7rem 1rem;border-radius:7px;font-size:12.5px;line-height:1.55;margin-top:.85rem}
+.alert-w{background:rgba(180,120,30,.07);border:1px solid rgba(180,120,30,.2);color:#c9952a}
+.alert-i{background:rgba(60,110,180,.07);border:1px solid rgba(60,110,180,.2);color:var(--acc3)}
+.alert-g{background:rgba(74,160,100,.07);border:1px solid rgba(74,160,100,.2);color:#6ab58a}
+.alert-r{background:rgba(180,80,80,.07);border:1px solid rgba(180,80,80,.2);color:#c07070}
+.alert-p{background:rgba(110,90,180,.07);border:1px solid rgba(110,90,180,.2);color:#9080d0}
+.alert-ico{flex-shrink:0;font-size:14px;margin-top:1px}
+
+/* TAG */
+.tag{display:inline-flex;align-items:center;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;vertical-align:middle;margin-left:6px}
+.tag-r{background:rgba(180,80,80,.1);color:#c07070;border:1px solid rgba(180,80,80,.2)}
+.tag-w{background:rgba(180,120,30,.1);color:#c9952a;border:1px solid rgba(180,120,30,.2)}
+.tag-g{background:rgba(74,160,100,.1);color:#6ab58a;border:1px solid rgba(74,160,100,.2)}
+
+/* PREC */
+.prec{background:var(--s2);border:1px solid var(--b1);border-left:2px solid var(--acc);border-radius:8px;padding:.9rem 1.1rem;margin-bottom:.75rem}
+.prec-num{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--acc2);margin-bottom:.25rem;letter-spacing:.04em}
+.prec-date{font-family:var(--mono);font-size:9px;color:var(--t3);margin-bottom:.5rem}
+.prec-txt{font-size:13px;color:var(--t1);line-height:1.6;margin-bottom:.5rem}
+.prec-note{font-size:12px;color:var(--t2);line-height:1.55;padding:.5rem .75rem;background:rgba(255,255,255,.03);border-radius:5px;margin-top:.4rem}
+.prec-note-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-bottom:3px}
+
+/* LINK CARD */
+.lcard{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:.8rem 1rem;margin-bottom:.5rem;transition:all .15s}
+.lcard:hover{border-color:var(--b3);background:var(--s3)}
+.lcard-l{display:flex;align-items:center;gap:10px}
+.lcard-ico{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.lcard-name{font-size:13px;font-weight:500;color:var(--t1)}
+.lcard-url{font-size:10px;color:var(--t3);font-family:var(--mono);margin-top:1px}
+.lcard-arr{color:var(--t3);font-size:13px}
+
+/* CODE */
+code{font-family:var(--mono);font-size:12px;background:var(--s3);border:1px solid var(--b2);border-radius:4px;padding:2px 7px;color:var(--teal)}
+
+/* CATEGORY */
+.cat{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:.75rem 0 .4rem;display:block}
+
+/* COURT ASSISTANT FEATURE */
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+@media(max-width:560px){.feature-grid{grid-template-columns:1fr}}
+.feature-box{background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:.9rem 1rem}
+.feature-box-ico{font-size:20px;margin-bottom:.4rem}
+.feature-box-title{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:.25rem}
+.feature-box-txt{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* FLOWCHART */
+.flow{display:flex;flex-direction:column;align-items:center;gap:0}
+.flow-node{border-radius:8px;padding:.65rem 1.25rem;font-size:13px;font-weight:500;text-align:center;position:relative;min-width:220px;max-width:420px;width:100%}
+.flow-node.start{background:rgba(180,120,30,.12);border:1px solid rgba(180,120,30,.3);color:#c9952a;font-weight:700;font-size:14px;max-width:520px}
+.flow-node.action{background:var(--s2);border:1px solid var(--b2);color:var(--t1)}
+.flow-node.doc{background:rgba(60,110,180,.07);border:1px solid rgba(60,110,180,.2);color:var(--acc3)}
+.flow-node.doc::before{content:'📄 Документ';display:block;font-family:var(--mono);font-size:9px;font-weight:600;color:var(--t3);margin-bottom:3px;letter-spacing:.05em}
+.flow-node.question{background:rgba(110,90,180,.08);border:1px solid rgba(110,90,180,.25);color:#9080d0;font-style:italic}
+.flow-node.yes{background:rgba(74,160,100,.07);border:1px solid rgba(74,160,100,.2);color:#6ab58a;font-weight:600}
+.flow-node.no{background:rgba(180,80,80,.07);border:1px solid rgba(180,80,80,.2);color:#c07070;font-weight:600}
+.flow-node.doc-end{background:rgba(180,80,80,.07);border:1px solid rgba(180,80,80,.2);color:#c07070}
+.flow-node.doc-end::before{content:'📄 Документ';display:block;font-family:var(--mono);font-size:9px;font-weight:600;color:var(--t3);margin-bottom:3px;letter-spacing:.05em}
+.flow-arrow{width:1px;height:20px;background:var(--b3);margin:0 auto;flex-shrink:0}
+.flow-split{display:flex;gap:1rem;width:100%;justify-content:center;align-items:flex-start;margin:0}
+.flow-col{display:flex;flex-direction:column;align-items:center;gap:0;flex:1;max-width:280px}
+.flow-col-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:4px;margin-bottom:4px;text-align:center}
+
+/* NUMS */
+.nums-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-bottom:1rem}
+.num-card{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:1rem 1.1rem}
+.num-lbl{font-family:var(--mono);font-size:10px;color:var(--t3);margin-bottom:.4rem;letter-spacing:.04em;text-transform:uppercase}
+.num-val{font-size:22px;font-weight:700;font-family:var(--mono);line-height:1.1}
+.num-sub{font-size:11px;color:var(--t3);margin-top:.3rem;line-height:1.4}
+.num-range{font-size:12px;font-family:var(--mono);color:var(--t2);margin-top:.2rem}
+
+/* SUPREME */
+.sup-case{background:var(--s2);border:1px solid var(--b1);border-left:2px solid var(--purple);border-radius:8px;padding:.9rem 1.1rem;margin-bottom:.65rem}
+.sup-case-title{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:.3rem}
+.sup-case-sub{font-size:12px;color:var(--t3);font-family:var(--mono)}
+
+@media(max-width:600px){.flow-split{flex-direction:column;align-items:center}.flow-col{max-width:100%;width:100%}}
+</style>
+</head>
+<body>
+
+<div id="t-process"></div>
+<div id="t-req"></div>
+<div id="t-grounds"></div>
+<div id="t-supreme"></div>
+<div id="t-nums"></div>
+<div id="t-deliver"></div>
+<div id="t-prec"></div>
+<div id="t-assistant"></div>
+<div id="t-links"></div>
+
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;border-radius:10px">
+      <defs>
+        <linearGradient id="tgi1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6d65e8"/>
+          <stop offset="100%" stop-color="#3730a3"/>
+        </linearGradient>
+        <linearGradient id="tgi2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.15)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+      <rect width="80" height="80" rx="18" fill="url(#tgi1)"/>
+      <rect width="80" height="80" rx="18" fill="url(#tgi2)"/>
+      <path d="M13 32 L40 15 L67 32" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="13" y="30.5" width="54" height="3.5" rx="1.75" fill="white"/>
+      <rect x="16" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.8"/>
+      <rect x="24" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.85"/>
+      <rect x="32.5" y="34" width="3" height="24" rx="1.5" fill="white"/>
+      <rect x="38.5" y="34" width="3" height="24" rx="1.5" fill="white"/>
+      <rect x="44.5" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.85"/>
+      <rect x="52.5" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.8"/>
+      <rect x="60.5" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.75"/>
+      <rect x="11" y="58" width="58" height="3.5" rx="1.75" fill="white"/>
+      <rect x="14" y="61.5" width="52" height="2.5" rx="1.25" fill="white" opacity="0.5"/>
+    </svg>
+    <div class="topbar-name">Памятка судьи</div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <a href="#t-process"    class="tab-link tl-process">📋 Порядок суда</a>
+  <a href="#t-req"        class="tab-link tl-req">📄 Реквизиты</a>
+  <a href="#t-grounds"    class="tab-link tl-grounds">🚫 Отказ / возврат</a>
+  <a href="#t-supreme"    class="tab-link tl-supreme">👑 Дела ВС</a>
+  <a href="#t-nums"       class="tab-link tl-nums">🔢 Цифры</a>
+  <a href="#t-deliver"    class="tab-link tl-deliver">📦 Передача акта</a>
+  <a href="#t-prec"       class="tab-link tl-prec">⚖️ Прецеденты</a>
+  <a href="#t-assistant"  class="tab-link tl-assistant">🖥️ Court Assistant</a>
+  <a href="#t-links"      class="tab-link tl-links">🔗 Ссылки</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ══ PROCESS ══ -->
+<div id="c-process" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">📋</div>
+    <div><div class="sec-title">Порядок проведения суда</div><div class="sec-sub">district court · flowchart procedure</div></div>
+  </div>
+  <div class="card" style="padding:1.5rem">
+    <div class="card-head">Схема работы с иском</div>
+    <style>
+      .fc{display:flex;flex-direction:column;align-items:center;gap:0;width:100%}
+      .fc-node{border-radius:9px;padding:.6rem 1.1rem;font-size:13px;font-weight:500;text-align:center;position:relative;width:100%;max-width:460px}
+      .fc-start{background:rgba(180,120,30,.1);border:1.5px solid #b07820;color:#c9952a;font-weight:700;font-size:14px}
+      .fc-doc{background:rgba(60,110,180,.06);border:1px solid rgba(60,110,180,.3);color:#6a9ec4;font-size:12.5px}
+      .fc-doc::before{content:'📄';font-size:10px;margin-right:5px;opacity:.6}
+      .fc-question{background:rgba(110,90,180,.08);border:1.5px solid rgba(110,90,180,.4);color:#9080d0;font-style:italic;font-size:13px}
+      .fc-action{background:rgba(30,45,66,.5);border:1px solid #243548;color:#94a3b8;font-size:12.5px}
+      .fc-dead{background:rgba(127,48,48,.15);border:1px dashed #7f3030;color:#7f3030;font-size:12px}
+      .fc-back{background:rgba(180,120,30,.06);border:1px dashed rgba(180,120,30,.3);color:#92711a;font-size:12px}
+      .fc-final{background:rgba(42,157,145,.06);border:1px solid rgba(42,157,145,.25);color:#2a9d8f;font-size:12.5px}
+      .fc-final::before{content:'📄';font-size:10px;margin-right:5px;opacity:.6}
+
+      /* arrows */
+      .fc-arrow{display:flex;justify-content:center;align-items:center;height:28px;color:#2e4460;font-size:18px;line-height:1;flex-shrink:0}
+      .fc-arrow-down::after{content:'↓'}
+      .fc-arrow-down.green::after{color:#4a9d6a}
+      .fc-arrow-down.red::after{color:#a05858}
+      .fc-arrow-down.teal::after{color:#2a9d8f}
+      .fc-arrow-down.amber::after{color:#b07820}
+
+      /* 3-column split */
+      .fc-split3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;width:100%;margin:.25rem 0}
+      .fc-col{display:flex;flex-direction:column;align-items:center;gap:0}
+      .fc-col-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:4px 10px;border-radius:5px;margin-bottom:.35rem;text-align:center;width:100%}
+      .fc-col-label.green{background:rgba(74,160,100,.08);color:#4a9d6a;border:1px solid rgba(74,160,100,.25)}
+      .fc-col-label.amber{background:rgba(180,120,30,.08);color:#c9952a;border:1px solid rgba(180,120,30,.25)}
+      .fc-col-label.red{background:rgba(180,80,80,.08);color:#c07070;border:1px solid rgba(180,80,80,.25)}
+
+      /* 2-column split */
+      .fc-split2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;width:100%;margin:.25rem 0}
+
+      /* yes/no labels inline */
+      .fc-yesno{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;width:100%;margin-top:.1rem}
+      .fc-yes{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-align:center;padding:4px;border-radius:5px;background:rgba(74,160,100,.1);color:#4a9d6a;border:1px solid rgba(74,160,100,.25)}
+      .fc-no{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-align:center;padding:4px;border-radius:5px;background:rgba(180,80,80,.1);color:#a05858;border:1px solid rgba(180,80,80,.25)}
+
+      /* sub-split for без/с прокурором */
+      .fc-prosplit{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:100%}
+      .fc-pro-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:4px;text-align:center}
+      .fc-pro-label.blue{background:rgba(60,110,180,.08);color:#4a85b8;border:1px solid rgba(60,110,180,.2)}
+      .fc-pro-label.purple{background:rgba(110,90,180,.08);color:#7060c0;border:1px solid rgba(110,90,180,.2)}
+
+      .fc-doc-blue{background:rgba(60,110,180,.06);border:1px solid rgba(60,110,180,.25);color:#6a9ec4;border-radius:8px;padding:.5rem .7rem;font-size:11.5px;text-align:center;width:100%}
+      .fc-doc-blue::before{content:'📄 ';font-size:9px;opacity:.5}
+      .fc-doc-purple{background:rgba(110,90,180,.06);border:1px solid rgba(110,90,180,.25);color:#9080d0;border-radius:8px;padding:.5rem .7rem;font-size:11.5px;text-align:center;width:100%}
+      .fc-doc-purple::before{content:'📄 ';font-size:9px;opacity:.5}
+
+      .fc-divider{width:1px;background:rgba(60,110,180,.2);margin:.5rem auto;height:20px}
+
+      /* connector lines between columns */
+      .fc-hline{width:100%;height:1px;background:rgba(46,68,96,.8);margin:.25rem 0}
+
+      @media(max-width:580px){
+        .fc-split3{grid-template-columns:1fr}
+        .fc-split2{grid-template-columns:1fr}
+        .fc-prosplit{grid-template-columns:1fr}
+        .fc-yesno{grid-template-columns:1fr}
+      }
+    </style>
+
+    <div class="fc">
+
+      <!-- START -->
+      <div class="fc-node fc-start">Поступил иск в окружной суд</div>
+      <div class="fc-arrow fc-arrow-down"></div>
+
+      <!-- 3 branches -->
+      <div class="fc-split3">
+        <!-- GREEN -->
+        <div class="fc-col">
+          <div class="fc-col-label green">✓ Иск без ошибок</div>
+          <div class="fc-arrow fc-arrow-down green"></div>
+          <div class="fc-node fc-action" style="color:#6ab58a;background:rgba(74,160,100,.05);border-color:rgba(74,160,100,.2);font-size:12px;width:100%;max-width:none">Иск корректен → к принятию</div>
+        </div>
+        <!-- AMBER -->
+        <div class="fc-col">
+          <div class="fc-col-label amber">⚠ Иск с ошибками</div>
+          <div class="fc-arrow fc-arrow-down amber"></div>
+          <div class="fc-node fc-doc" style="color:#c9952a;border-color:rgba(180,120,30,.3);background:rgba(180,120,30,.05);width:100%;max-width:none">об оставлении иска без движения</div>
+        </div>
+        <!-- RED -->
+        <div class="fc-col">
+          <div class="fc-col-label red">✕ Отказ в принятии</div>
+          <div class="fc-arrow fc-arrow-down red"></div>
+          <div class="fc-node fc-doc" style="color:#c07070;border-color:rgba(180,80,80,.3);background:rgba(180,80,80,.05);width:100%;max-width:none">об отказе в принятии иска</div>
+          <div class="fc-arrow fc-arrow-down red"></div>
+          <div class="fc-node fc-dead" style="width:100%;max-width:none">🚫 Конец — повторное обращение невозможно</div>
+        </div>
+      </div>
+
+      <div class="fc-arrow fc-arrow-down"></div>
+
+      <!-- QUESTION -->
+      <div class="fc-node fc-question">Ошибки устранены / пошлина оплачена?</div>
+      <div style="font-size:10px;color:#4b5d73;font-family:'JetBrains Mono',monospace;margin:.3rem 0 .5rem;text-align:center">72 ч. на устранение с момента определения</div>
+
+      <!-- YES / NO -->
+      <div class="fc-split2">
+        <!-- YES -->
+        <div class="fc-col">
+          <div class="fc-yes">ДА ↓</div>
+          <div class="fc-arrow fc-arrow-down green"></div>
+          <!-- sub-split: без/с прокурором -->
+          <div class="fc-prosplit">
+            <div class="fc-col">
+              <div class="fc-pro-label blue">Без прокурора</div>
+              <div class="fc-arrow fc-arrow-down" style="color:#4a85b8;height:20px"></div>
+              <div class="fc-doc-blue">о принятии иска к производству</div>
+            </div>
+            <div class="fc-col">
+              <div class="fc-pro-label purple">С прокурором</div>
+              <div class="fc-arrow fc-arrow-down" style="color:#7060c0;height:20px"></div>
+              <div class="fc-doc-purple">о принятии иска к производству</div>
+            </div>
+          </div>
+        </div>
+        <!-- NO -->
+        <div class="fc-col">
+          <div class="fc-no">НЕТ ↓</div>
+          <div class="fc-arrow fc-arrow-down red"></div>
+          <div class="fc-node fc-doc" style="color:#c07070;border-color:rgba(180,80,80,.3);background:rgba(180,80,80,.05);width:100%;max-width:none">о возвращении иска</div>
+          <div class="fc-arrow fc-arrow-down" style="color:#92711a;height:24px"></div>
+          <div class="fc-node fc-back" style="width:100%;max-width:none">↩ Повторное обращение возможно после устранения</div>
+        </div>
+      </div>
+
+      <div class="fc-arrow fc-arrow-down"></div>
+
+      <!-- MAIN FLOW -->
+      <div class="fc-node fc-doc">о назначении дела к судебному процессу</div>
+      <div class="fc-arrow fc-arrow-down"></div>
+
+      <div class="fc-node fc-action" style="border-color:#2e4460;max-width:460px">
+        <span style="font-weight:600;color:#e2e8f0">Проведение заседания</span><br>
+        <span style="font-size:11.5px;color:#4b5d73">истец &nbsp;→&nbsp; ответчик &nbsp;→&nbsp; прения</span>
+      </div>
+      <div class="fc-arrow fc-arrow-down teal"></div>
+
+      <div class="fc-node fc-final" style="font-size:13px;font-weight:600">Решение</div>
+      <div class="fc-arrow fc-arrow-down teal"></div>
+
+      <div class="fc-node fc-final" style="color:#5eead4;border-color:rgba(42,157,145,.18)">Ордер&nbsp;<span style="color:#1a7a6e;font-size:11px">(при необходимости)</span></div>
+      <div class="fc-arrow fc-arrow-down teal"></div>
+
+      <div class="fc-node fc-final" style="background:rgba(96,165,250,.06);border-color:rgba(96,165,250,.25);color:#4a85b8;font-weight:600">Мотивировка</div>
+
+    </div>
+
+    <div class="alert alert-i" style="margin-top:1.25rem">
+      <span class="alert-ico">ℹ️</span>
+      <span>При наличии ошибок иск сначала <strong>оставляется без движения</strong> — и только после устранения либо принимается к производству, либо возвращается истцу</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head">После вынесения решения</div>
+    <ol class="steps">
+      <li>Опубликовать судебный акт по установленной форме</li>
+      <li>Если требуется ордер — оформить отдельным документом</li>
+      <li>Если требуется снять статьи — написать в канал снятия статей</li>
+      <li>Если требуется — составить мотивировку решения</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══ REQ ══ -->
+<div id="c-req" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">📄</div>
+    <div><div class="sec-title">Реквизиты искового заявления</div><div class="sec-sub">Гл. II Ст. 2 Правил подачи</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Обязательные поля</div>
+    <ul class="lst">
+      <li>Наименование суда</li>
+      <li>ФИО заявителя (+ должность, если должностное лицо)</li>
+      <li>ФИО ответчика и/или идентификационный знак</li>
+      <li>Суть нарушения прав / угрозы нарушения</li>
+      <li>Требования к ответчику — ясно и разумно</li>
+      <li>Контакт истца (Discord)</li>
+      <li>Обстоятельства с указанием времени и места + доказательства</li>
+      <li>Ксерокопия паспорта истца</li>
+      <li>Служебное удостоверение (при наличии)</li>
+      <li>При представительстве — договор с клиентом / удостоверение адвоката</li>
+    </ul>
+    <div class="alert alert-i"><span class="alert-ico">💡</span><span>Если доказательств недостаточно — прикладывается ходатайство об истребовании (Ст. 2.1), в т.ч. запрос видеозаписей с камер</span></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Форма и наименование</div>
+    <ul class="lst">
+      <li>Иск размещается на официальном портале судебной системы</li>
+      <li>Наименование иска: <code>Иск №...</code> (следующий по порядку номер)</li>
+      <li>Апелляция: <code>Апелляционная жалоба №...</code></li>
+      <li>Ходатайство: <code>Ходатайство №...</code> — в теме соответствующего иска</li>
+      <li>Стиль — официально-деловой, без эмоциональных формулировок (Ст. 3.2)</li>
+      <li>К встречным искам — те же требования (Ст. 3.1)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ GROUNDS ══ -->
+<div id="c-grounds" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">🚫</div>
+    <div><div class="sec-title">Отказ / возврат / без движения</div><div class="sec-sub">Гл. III–V Правил подачи</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Отказ в принятии <span class="tag tag-r">Повторное обращение невозможно</span></div>
+    <ul class="lst">
+      <li>С момента событий прошло <strong>более 36 часов</strong></li>
+      <li>Иск подан в защиту чужих прав без соответствующего права</li>
+      <li>Оспариваемые действия не затрагивают права заявителя</li>
+    </ul>
+    <div class="alert alert-r"><span class="alert-ico">🔴</span><span>На определение об отказе может быть подана жалоба. Повторное обращение по тому же предмету — невозможно.</span></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Возврат иска <span class="tag tag-w">Повторное обращение возможно</span></div>
+    <ul class="lst">
+      <li>Иск отредактирован без ходатайства об уточнении</li>
+      <li>Аналогичное дело уже в производстве</li>
+      <li>Истец отозвал иск до первого акта</li>
+      <li>Не устранены дефекты в срок 72 ч.</li>
+      <li>Дело неподсудно данному суду</li>
+      <li>Нарушено несколько требований к форме / содержанию</li>
+      <li>Ответчик не является субъектом правоотношений</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-head">Оставление без движения <span class="tag tag-g">Срок до 72 ч. на исправление</span></div>
+    <ul class="lst">
+      <li>Иск подан с нарушением процессуальных требований</li>
+      <li>В определении указываются основания + срок устранения</li>
+      <li>После устранения — принимается к производству</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ SUPREME ══ -->
+<div id="c-supreme" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">👑</div>
+    <div><div class="sec-title">Дела, передаваемые в Верховный суд</div><div class="sec-sub">окружной суд не рассматривает — направляет выше</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Дела против высокопоставленных лиц</div>
+    <div class="alert alert-p" style="margin-bottom:1rem">
+      <span class="alert-ico">📜</span>
+      <span>Постановление ВС от 02.11.2025 «О перечне высокопоставленных лиц». Иски против следующих лиц — исключительная компетенция Верховного суда:</span>
+    </div>
+    <div class="sup-case"><div class="sup-case-title">(а) Судьи всех инстанций</div><div class="sup-case-sub">Включая судей окружного и апелляционного судов</div></div>
+    <div class="sup-case"><div class="sup-case-title">(б) Губернатор и вице-губернатор</div><div class="sup-case-sub">Высшие должностные лица исполнительной власти штата</div></div>
+    <div class="sup-case"><div class="sup-case-title">(в) Министры и их заместители</div><div class="sup-case-sub">Члены правительства штата Сан-Андреас</div></div>
+    <div class="sup-case"><div class="sup-case-title">(г) Мэры и их заместители</div><div class="sup-case-sub">Главы муниципальных образований</div></div>
+    <div class="sup-case"><div class="sup-case-title">(д) Директор секретной службы и его заместители</div><div class="sup-case-sub">Руководство USSS</div></div>
+    <div class="sup-case"><div class="sup-case-title">(е) Руководители государственных структур и их заместители</div><div class="sup-case-sub">Лидеры LSPD, FIB, LSSD, EMS, NG, SASPA и иных госструктур</div></div>
+    <div class="alert alert-w"><span class="alert-ico">⚠️</span><span>Постановление ВС от 10.07.2025 утратило силу. Актуальный перечень — от 02.11.2025.</span></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Иные категории дел ВС</div>
+    <div class="sup-case" style="border-left-color:var(--amber)"><div class="sup-case-title">Дела с наказанием в виде пожизненного приговора</div><div class="sup-case-sub">Ст. 27 Конституции штата — исключительная подсудность ВС</div></div>
+    <div class="sup-case" style="border-left-color:var(--amber)"><div class="sup-case-title">Импичмент руководителя госструктуры / Губернатора</div><div class="sup-case-sub">Материалы Конгресса передаются в ВС · рассмотрение в течение 7 рабочих дней</div></div>
+    <div class="sup-case" style="border-left-color:var(--amber)"><div class="sup-case-title">Конституционные споры и прецедентные дела</div><div class="sup-case-sub">При пробеле в законодательстве, требующем прецедентного решения</div></div>
+    <div class="sup-case" style="border-left-color:var(--amber)"><div class="sup-case-title">Уголовные дела против судьи</div><div class="sup-case-sub">Возбуждение, привлечение в качестве обвиняемого, ОРМ — только через ВС (Прецедент №310)</div></div>
+    <div class="alert alert-i"><span class="alert-ico">ℹ️</span><span>Если иск в окружном суде касается высокопоставленного лица — вынести определение о неподсудности и перенаправить в ВС.</span></div>
+  </div>
+</div>
+
+<!-- ══ NUMS ══ -->
+<div id="c-nums" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">🔢</div>
+    <div><div class="sec-title">Ключевые цифры</div><div class="sec-sub">сроки · суммы · лимиты</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Пошлины</div>
+    <div class="nums-grid">
+      <div class="num-card"><div class="num-lbl">Окружной суд</div><div class="num-val" style="color:var(--acc2)">15 000$</div><div class="num-sub">После первого судебного акта · на имя судьи</div></div>
+      <div class="num-card"><div class="num-lbl">Апелляционный суд</div><div class="num-val" style="color:var(--acc2)">20 000$</div><div class="num-sub">После первого судебного акта · на имя судьи</div></div>
+      <div class="num-card"><div class="num-lbl">Верховный суд</div><div class="num-val" style="color:var(--acc2)">20 000$</div><div class="num-sub">После первого судебного акта · на имя судьи</div></div>
+      <div class="num-card"><div class="num-lbl">Встречный иск</div><div class="num-val" style="color:var(--green)">0$</div><div class="num-sub">Пошлиной не облагается</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head">Процессуальные сроки</div>
+    <div class="nums-grid">
+      <div class="num-card"><div class="num-lbl">Давность подачи иска</div><div class="num-val" style="color:var(--amber)">36 ч</div><div class="num-sub">С момента нарушения. После — отказ в принятии</div></div>
+      <div class="num-card"><div class="num-lbl">Устранение дефектов</div><div class="num-val" style="color:var(--amber)">72 ч</div><div class="num-sub">С определения об оставлении без движения</div></div>
+      <div class="num-card"><div class="num-lbl">Оплата пошлины</div><div class="num-val" style="color:var(--amber)">После 1-го акта</div><div class="num-sub">Конкретный срок — на усмотрение судьи</div></div>
+      <div class="num-card"><div class="num-lbl">Рассмотрение импичмента</div><div class="num-val" style="color:var(--amber)">7 дн</div><div class="num-sub">Рабочих дней с публикации итогов Конгресса</div></div>
+      <div class="num-card"><div class="num-lbl">Ответ Генпрокуратуры</div><div class="num-val" style="color:var(--amber)">48 ч</div><div class="num-sub">На законопроект после публикации итогов</div></div>
+      <div class="num-card"><div class="num-lbl">Подпись Губернатора</div><div class="num-val" style="color:var(--amber)">72 ч</div><div class="num-sub">После передачи законопроекта</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DELIVER ══ -->
+<div id="c-deliver" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">📦</div>
+    <div><div class="sec-title">Передача судебного акта</div><div class="sec-sub">приставы · прокуратура · прямая передача</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">Через приставов / прокуратуру</div>
+    <a class="lcard" href="https://forms.yandex.ru/u/69e246021f1eb527b0e312cb" target="_blank">
+      <div class="lcard-l"><div class="lcard-ico">📋</div><div><div class="lcard-name">Яндекс форма</div><div class="lcard-url">forms.yandex.ru</div></div></div>
+      <div class="lcard-arr">↗</div>
+    </a>
+    <a class="lcard" href="https://docs.google.com/forms/d/e/1FAIpQLSdq-cIJjlYaP6bRWWIPLtpy3z63MP91Vr2iaUYPnTpPc2edRw/viewform" target="_blank">
+      <div class="lcard-l"><div class="lcard-ico">📋</div><div><div class="lcard-name">Google форма</div><div class="lcard-url">docs.google.com</div></div></div>
+      <div class="lcard-arr">↗</div>
+    </a>
+  </div>
+  <div class="card">
+    <div class="card-head">Напрямую (без приставов)</div>
+    <ol class="steps">
+      <li>Отыграть публикацию и отправку определения (roleplay)</li>
+      <li>Написать в чат структуры: <code>to LSPD: На вашу почту направлено определение суда.</code></li>
+      <li>Составить отчёт в канале ЧП Discord</li>
+      <li>Использовать макрос (см. вкладку «Ссылки»)</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ══ PREC ══ -->
+<div id="c-prec" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">⚖️</div>
+    <div><div class="sec-title">Судебные прецеденты</div><div class="sec-sub">применяются при пробеле в законодательстве · сила конституционного закона</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Введение</div>
+    <div style="font-size:13px;color:var(--t2);line-height:1.65">
+      Судебные прецеденты имеют юридическую силу конституционного закона (Ст. 7 Гл. II Конституции). На них можно ссылаться как на положения нормативно-правового акта. Решения и определения, <strong style="color:var(--t1)">не опубликованные в официальном реестре</strong>, прецедентами не являются.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Прецеденты</div>
+
+    <!-- №44 ВС -->
+    <div class="prec">
+      <div class="prec-num">ПРЕЦЕДЕНТ №44 · ВЕРХОВНЫЙ СУД</div>
+      <div class="prec-date">10 января 2021 г.</div>
+      <div class="prec-txt">Лицо, являвшееся неприкосновенным и прекратившее исполнение своих полномочий, обладает ограниченной неприкосновенностью. В отсутствие решения Верховного суда либо ордера оно не может быть задержано, арестовано, подвергнуто обыску или допросу в рамках дел, связанных с деяниями, совершёнными в период исполнения полномочий.</div>
+      <div class="prec-note">
+        <div class="prec-note-lbl">Разъяснение</div>
+        Неприкосновенность — не личная привилегия, а средство защиты общественно важных функций от внешнего давления. Она обусловлена повышенными требованиями к неприкосновенным лицам со стороны общества и государства.
+      </div>
+    </div>
+
+    <!-- №161 ОС -->
+    <div class="prec">
+      <div class="prec-num">ПРЕЦЕДЕНТ №161 · ОКРУЖНОЙ СУД</div>
+      <div class="prec-date">10 января 2021 г.</div>
+      <div class="prec-txt">Признание решения либо определения суда неправомерным и его отмена не является фактом привлечения судьи к ответственности. Судья принимает решение на основании собственного убеждения и не должен отвечать, если его мнение расходится с позицией вышестоящего суда.</div>
+      <div class="prec-note">
+        <div class="prec-note-lbl">Разъяснение</div>
+        Судью нельзя привлечь к ответственности за принятое решение — за исключением случаев, когда судья знал, что принимает заведомо незаконное решение.
+      </div>
+    </div>
+
+    <!-- №16 ВС -->
+    <div class="prec">
+      <div class="prec-num">ПРЕЦЕДЕНТ №16 · ВЕРХОВНЫЙ СУД</div>
+      <div class="prec-date">25 января 2021 г.</div>
+      <div class="prec-txt">Руководствуясь Ст. 9 Конституции: в уголовном преследовании в любом суде обвиняемая сторона должна иметь право на скорое и публичное разбирательство. Ст. 6 Конституции — право суда присяжных гарантировано всем гражданам и остаётся неприкосновенным. Верховный суд рассматривает дела против высокопоставленных лиц и дела с наказанием в виде пожизненного приговора (Ст. 27).</div>
+      <div class="prec-note">
+        <div class="prec-note-lbl">Разъяснение</div>
+        Пункт 4 Главы 5 Положения о форме подачи исковых заявлений («Основания для отказа в принятии — если ответчик обладает неприкосновенностью») признан недействительным.
+      </div>
+    </div>
+
+    <!-- №54 ВС -->
+    <div class="prec">
+      <div class="prec-num">ПРЕЦЕДЕНТ №54 · ВЕРХОВНЫЙ СУД</div>
+      <div class="prec-date">30 января 2021 г.</div>
+      <div class="prec-txt">Право заявить ходатайство имеют: подозреваемый, обвиняемый, его защитник, потерпевший, его законный представитель и представитель, частный обвинитель, эксперт, гражданский истец, гражданский ответчик, их представители, представитель администрации организации и иное лицо, права и законные интересы которых затронуты в ходе досудебного или судебного производства.</div>
+    </div>
+
+    <!-- Апелляция №18 -->
+    <div class="prec" style="border-left-color:var(--teal)">
+      <div class="prec-num" style="color:var(--teal)">ОПРЕДЕЛЕНИЕ АПЕЛЛЯЦИОННОГО СУДА · ЖАЛОБА №18</div>
+      <div class="prec-date">21 июня 2021 г.</div>
+      <div class="prec-txt">Два самостоятельных основания для оставления апелляционной жалобы без движения: (1) отсутствие у суда полных сведений о статусе исполнения обжалуемого решения; (2) наличие оснований полагать, что податель жалобы уклонился от исполнения судебного акта, вступившего в силу. При неполучении истребуемых сведений в срок — жалоба отклоняется без рассмотрения по существу.</div>
+    </div>
+
+    <!-- Апелляция №19 -->
+    <div class="prec" style="border-left-color:var(--teal)">
+      <div class="prec-num" style="color:var(--teal)">РЕШЕНИЕ АПЕЛЛЯЦИОННОГО СУДА · ЖАЛОБА №19</div>
+      <div class="prec-date">18 июля 2021 г.</div>
+      <div class="prec-txt">К ходатайству об уточнении исковых требований применяются нормы, предусмотренные для искового заявления. Такое ходатайство представляется в суд в письменной форме с размещением на официальном портале судебной системы. Суд вправе рассматривать дело только по требованиям, заявленным сторонами — выходить за рамки искового заявления недопустимо.</div>
+    </div>
+
+    <!-- Адвокат -->
+    <div class="prec" style="border-left-color:var(--teal)">
+      <div class="prec-num" style="color:var(--teal)">РЕШЕНИЕ АПЕЛЛЯЦИОННОГО СУДА · О ЛИЦЕНЗИИ АДВОКАТА</div>
+      <div class="prec-date">23 июля 2021 г.</div>
+      <div class="prec-txt">В случае грубого нарушения частным адвокатом действующего законодательства его лицензия подлежит аннулированию с лишением права занятия адвокатской деятельностью на определённый срок или бессрочно. Если такие обстоятельства выявлены в ходе разбирательства — суд уполномочен самостоятельно разрешить вопрос о санкциях без дополнительных заявлений сторон, обеспечив лицу право ознакомления с обвинением и представления возражений в разумный срок.</div>
+      <div class="prec-note">
+        <div class="prec-note-lbl">Дополнительно</div>
+        Частный адвокат не является должностным лицом. При нарушении законов штата сотрудники правоохранительных органов вправе привлечь его к уголовной ответственности по подходящим статьям УК.
+      </div>
+    </div>
+
+    <!-- Опечатки -->
+    <div class="prec" style="border-left-color:var(--teal)">
+      <div class="prec-num" style="color:var(--teal)">ОПРЕДЕЛЕНИЕ АПЕЛЛЯЦИОННОГО СУДА · ЖАЛОБА №20</div>
+      <div class="prec-date">7 августа 2021 г.</div>
+      <div class="prec-txt">При принятии судебных актов допустимо исправление очевидных опечаток, описок и арифметических ошибок. Суд вправе внести такие изменения как по заявлению заинтересованных лиц, так и по собственной инициативе. Исправления должны носить исключительно технический характер и не могут изменять судебный акт по существу.</div>
+    </div>
+
+    <!-- Законное требование -->
+    <div class="prec">
+      <div class="prec-num">РЕШЕНИЕ ВЕРХОВНОГО СУДА · ЖАЛОБА №95</div>
+      <div class="prec-date">16 мая 2023 г.</div>
+      <div class="prec-txt">Предъявив служебное удостоверение или идентификационный знак, сотрудник правоохранительных органов вправе предъявлять гражданам законные требования в повелительном наклонении, в том числе содержащие вежливые формулировки. Законное требование должно быть обоснованным (направлено на достижение конкретной цели), законным и выполнимым.</div>
+    </div>
+
+    <!-- №310 ВС -->
+    <div class="prec">
+      <div class="prec-num">ОПРЕДЕЛЕНИЕ ВЕРХОВНОГО СУДА · ИСК №310</div>
+      <div class="prec-date">21 мая 2023 г.</div>
+      <div class="prec-txt">При рассмотрении вопросов о возбуждении уголовного дела против судьи, привлечении его в качестве обвиняемого, административной ответственности или проведении ОРМ — Верховный суд отказывает в даче согласия, если установит, что указанные меры обусловлены позицией, занимаемой судьёй при осуществлении судейских полномочий. Иски о привлечении судьи к ответственности за принятый им судебный акт являются самостоятельным основанием для отказа в принятии.</div>
+    </div>
+
+    <!-- Эксперт -->
+    <div class="prec">
+      <div class="prec-num">РЕШЕНИЕ ВЕРХОВНОГО СУДА · ЖАЛОБА №161</div>
+      <div class="prec-date">19 апреля 2024 г.</div>
+      <div class="prec-txt">Эксперт (специалист) в рамках судопроизводства вправе знакомиться с материалами дела и заявлять ходатайства. Перед привлечением эксперта суд обязан проверить его квалификацию, задав вопросы в соответствии с заявленной категорией. Если суд признает знания эксперта недостаточными — эксперт отводится от дальнейшего участия в процессе.</div>
+      <div class="prec-note">
+        <div class="prec-note-lbl">Определение эксперта</div>
+        Эксперт/специалист — лицо, обладающее специальными знаниями, привлекаемое для разъяснения сторонам и суду вопросов профессиональной компетенции. Обязан явиться в суд в назначенное время и отвечать на поставленные вопросы.
+      </div>
+    </div>
+
+    <!-- Объединение дел -->
+    <div class="prec">
+      <div class="prec-num">ОПРЕДЕЛЕНИЕ ВЕРХОВНОГО СУДА · ИСК №638</div>
+      <div class="prec-date">9 июля 2024 г.</div>
+      <div class="prec-txt">Суд может объединить несколько дел в одно производство, если они связаны по основаниям исковых требований или доказательствам, либо существует риск принятия противоречащих друг другу актов. Объединение — по инициативе суда или ходатайству участника. Материалы передаются судье, первым принявшему иск. Судебная пошлина при объединении ни одному из истцов не возвращается. Отказ от иска одним из истцов влечёт прекращение производства только в отношении данного истца.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COURT ASSISTANT ══ -->
+<div id="c-assistant" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">
+      <svg width="24" height="24" viewBox="0 0 80 80" fill="none">
+        <defs>
+          <linearGradient id="cai1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6d65e8"/>
+            <stop offset="100%" stop-color="#3730a3"/>
+          </linearGradient>
+          <linearGradient id="cai2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.15)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+        </defs>
+        <rect width="80" height="80" rx="18" fill="url(#cai1)"/>
+        <rect width="80" height="80" rx="18" fill="url(#cai2)"/>
+        <path d="M13 32 L40 15 L67 32" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="13" y="30.5" width="54" height="3.5" rx="1.75" fill="white"/>
+        <rect x="16" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.8"/>
+        <rect x="24" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.85"/>
+        <rect x="32.5" y="34" width="3" height="24" rx="1.5" fill="white"/>
+        <rect x="38.5" y="34" width="3" height="24" rx="1.5" fill="white"/>
+        <rect x="44.5" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.85"/>
+        <rect x="52.5" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.8"/>
+        <rect x="60.5" y="34" width="3" height="24" rx="1.5" fill="white" opacity="0.75"/>
+        <rect x="11" y="58" width="58" height="3.5" rx="1.75" fill="white"/>
+        <rect x="14" y="61.5" width="52" height="2.5" rx="1.25" fill="white" opacity="0.5"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sec-title">Court Assistant</div>
+      <div class="sec-sub">официальное приложение окружного суда · шаблоны · карточки дел</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">О приложении</div>
+    <div style="font-size:13.5px;color:var(--t2);line-height:1.7;margin-bottom:1.25rem">
+      <strong style="color:var(--t1)">Court Assistant</strong> — официальное приложение окружного суда штата Сан-Андреас, которое значительно упрощает повседневную работу судьи. Вместо ручного заполнения документов приложение позволяет формировать все судебные акты в несколько кликов по готовым шаблонам, а карточки дел помогают держать под рукой всю нужную информацию по каждому производству.
+    </div>
+    <div class="feature-grid">
+      <div class="feature-box">
+        <div class="feature-box-ico">📄</div>
+        <div class="feature-box-title">Шаблоны документов</div>
+        <div class="feature-box-txt">Все судебные акты — определения, решения, ордера, мотивировки — формируются автоматически по установленной форме</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-box-ico">🗂️</div>
+        <div class="feature-box-title">Карточки дел</div>
+        <div class="feature-box-txt">Каждое производство фиксируется в отдельной карточке: стороны, статус, история актов — всё в одном месте</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-box-ico">⚡</div>
+        <div class="feature-box-title">Скорость работы</div>
+        <div class="feature-box-txt">Рутинные действия, которые занимали минуты, выполняются в несколько кликов — больше времени на само разбирательство</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-box-ico">✅</div>
+        <div class="feature-box-title">Меньше ошибок</div>
+        <div class="feature-box-txt">Шаблоны исключают опечатки и несоответствия форме. Документ всегда оформлен по стандарту суда</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Как получить доступ</div>
+    <div style="background:rgba(109,101,232,.07);border:1px solid rgba(109,101,232,.2);border-radius:9px;padding:1.1rem 1.25rem;display:flex;gap:14px;align-items:flex-start">
+      <span style="font-size:20px;flex-shrink:0">📌</span>
+      <div>
+        <div style="font-size:13.5px;color:var(--t1);font-weight:500;margin-bottom:.4rem">Актуальная ссылка — в канале <span style="color:#8b85e8;font-family:'JetBrains Mono',monospace">#информация</span></div>
+        <div style="font-size:12.5px;color:var(--t2);line-height:1.6">По вопросам установки и работы с приложением пиши в Discord:<br><span style="color:#8b85e8;font-weight:600;font-family:'JetBrains Mono',monospace">saint.prince</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LINKS ══ -->
+<div id="c-links" class="tc">
+  <div class="sec-head">
+    <div class="sec-icon">🔗</div>
+    <div><div class="sec-title">Полезные ссылки</div><div class="sec-sub">все рабочие ресурсы в одном месте</div></div>
+  </div>
+
+  <span class="cat">Документы и шаблоны</span>
+  <a class="lcard" href="https://docs.google.com/document/d/1Pe-LY1p1rIpqo8DKGZPbcNqd6T_x9qzHNCsv5_A_xFQ/edit" target="_blank"><div class="lcard-l"><div class="lcard-ico">📘</div><div><div class="lcard-name">Регламент проведения суда</div><div class="lcard-url">docs.google.com</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://docossum.com/eclipse-court" target="_blank"><div class="lcard-l"><div class="lcard-ico">📁</div><div><div class="lcard-name">Все шаблоны документов</div><div class="lcard-url">docossum.com/eclipse-court</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://drive.google.com/drive/u/0/folders/1cmejWn-_ywOkc02B8GHV6fX1aQe9hJSm" target="_blank"><div class="lcard-l"><div class="lcard-ico">📁</div><div><div class="lcard-name">Резервные шаблоны (Google Drive)</div><div class="lcard-url">Если основной сайт не работает</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://forum.gta5rp.com/threads/gov-postanovlenija-verxovnogo-suda.414343/post-4244743" target="_blank"><div class="lcard-l"><div class="lcard-ico">📜</div><div><div class="lcard-name">Виды ордеров</div><div class="lcard-url">forum.gta5rp.com</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://docs.google.com/document/d/1Dq68z4nq4ZgG-6I94RIp_kmHrmQHXoPgWYf68PYOTag/edit" target="_blank"><div class="lcard-l"><div class="lcard-ico">⚙️</div><div><div class="lcard-name">Макросы для уведомлений</div><div class="lcard-url">docs.google.com</div></div></div><div class="lcard-arr">↗</div></a>
+
+  <span class="cat">Таблицы и отчёты</span>
+  <a class="lcard" href="https://docs.google.com/spreadsheets/d/1ts3mc2Wj6XNwj8qLMq1HEWy_vtSiLL5GiWHsky5PMEE/edit" target="_blank"><div class="lcard-l"><div class="lcard-ico">📊</div><div><div class="lcard-name">Таблица судов окружного суда</div><div class="lcard-url">Внести себя → Settings</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://discord.com/channels/713074418280038510/944976830987919451" target="_blank"><div class="lcard-l"><div class="lcard-ico">💬</div><div><div class="lcard-name">Канал ЧП в Discord (отчёты)</div><div class="lcard-url">discord.com</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://discord.com/channels/713076956748316702/923626293130588210" target="_blank"><div class="lcard-l"><div class="lcard-ico">📋</div><div><div class="lcard-name">Канал снятия статей</div><div class="lcard-url">discord.com · 713076956748316702/923626293130588210</div></div></div><div class="lcard-arr">↗</div></a>
+
+  <span class="cat">Запросы</span>
+  <a class="lcard" href="https://forms.yandex.ru/u/69e246021f1eb527b0e312cb" target="_blank"><div class="lcard-l"><div class="lcard-ico">📋</div><div><div class="lcard-name">Запрос приставам / прокуратуре (Яндекс)</div><div class="lcard-url">forms.yandex.ru</div></div></div><div class="lcard-arr">↗</div></a>
+  <a class="lcard" href="https://docs.google.com/forms/d/e/1FAIpQLSdq-cIJjlYaP6bRWWIPLtpy3z63MP91Vr2iaUYPnTpPc2edRw/viewform" target="_blank"><div class="lcard-l"><div class="lcard-ico">📋</div><div><div class="lcard-name">Запрос приставам / прокуратуре (Google)</div><div class="lcard-url">docs.google.com</div></div></div><div class="lcard-arr">↗</div></a>
+
+  <span class="cat">Нормативная база</span>
+  <a class="lcard" href="https://forum.gta5rp.com/threads/gov-pravila-podachi-iskovyx-zajavlenii.872720/" target="_blank"><div class="lcard-l"><div class="lcard-ico">⚖️</div><div><div class="lcard-name">Правила подачи исковых заявлений</div><div class="lcard-url">forum.gta5rp.com</div></div></div><div class="lcard-arr">↗</div></a>
+</div>
+
+</div>
+</body>
+</html>
